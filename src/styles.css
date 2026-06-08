@@ -1,0 +1,354 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Sproutopia — pixel-art sustainability adventure design system */
+
+@theme inline {
+  --font-display: "Press Start 2P", "VT323", ui-monospace, monospace;
+  --font-body: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-pixel: "Press Start 2P", monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sky: var(--sky);
+  --color-sky-deep: var(--sky-deep);
+  --color-grass: var(--grass);
+  --color-grass-dark: var(--grass-dark);
+  --color-leaf: var(--leaf);
+  --color-bloom: var(--bloom);
+  --color-coin: var(--coin);
+  --color-xp: var(--xp);
+  --color-smog: var(--smog);
+  --color-smog-deep: var(--smog-deep);
+  --color-flame: var(--flame);
+  --color-water: var(--water);
+
+  --shadow-pixel: 4px 4px 0 0 rgba(0, 0, 0, 0.18);
+  --shadow-pixel-sm: 2px 2px 0 0 rgba(0, 0, 0, 0.2);
+  --shadow-pixel-lg: 6px 6px 0 0 rgba(0, 0, 0, 0.22);
+}
+
+:root {
+  --background: oklch(0.97 0.02 110);
+  --foreground: oklch(0.22 0.05 145);
+
+  --card: oklch(0.99 0.012 110);
+  --card-foreground: oklch(0.22 0.05 145);
+  --popover: oklch(0.99 0.012 110);
+  --popover-foreground: oklch(0.22 0.05 145);
+
+  --primary: oklch(0.62 0.18 145); /* grass green */
+  --primary-foreground: oklch(0.98 0.01 145);
+
+  --secondary: oklch(0.86 0.13 90); /* sunny yellow */
+  --secondary-foreground: oklch(0.25 0.06 70);
+
+  --muted: oklch(0.93 0.025 130);
+  --muted-foreground: oklch(0.42 0.04 145);
+
+  --accent: oklch(0.78 0.16 30); /* warm bloom */
+  --accent-foreground: oklch(0.2 0.04 30);
+
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 30);
+
+  --border: oklch(0.28 0.05 145); /* dark pixel outline */
+  --input: oklch(0.9 0.02 130);
+  --ring: oklch(0.62 0.18 145);
+
+  --sky: oklch(0.86 0.09 230);
+  --sky-deep: oklch(0.72 0.13 230);
+  --grass: oklch(0.66 0.18 140);
+  --grass-dark: oklch(0.46 0.16 145);
+  --leaf: oklch(0.55 0.18 150);
+  --bloom: oklch(0.78 0.18 0); /* pink bloom */
+  --coin: oklch(0.82 0.16 85);
+  --xp: oklch(0.72 0.18 200);
+  --smog: oklch(0.45 0.04 290);
+  --smog-deep: oklch(0.28 0.05 290);
+  --flame: oklch(0.7 0.21 40);
+  --water: oklch(0.7 0.13 220);
+}
+
+.dark {
+  --background: oklch(0.18 0.04 250);
+  --foreground: oklch(0.96 0.02 130);
+  --card: oklch(0.24 0.04 250);
+  --card-foreground: oklch(0.96 0.02 130);
+  --popover: oklch(0.24 0.04 250);
+  --popover-foreground: oklch(0.96 0.02 130);
+  --primary: oklch(0.72 0.18 145);
+  --primary-foreground: oklch(0.15 0.04 145);
+  --border: oklch(0.96 0.02 130);
+  --muted: oklch(0.3 0.04 250);
+  --muted-foreground: oklch(0.78 0.04 130);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    font-family: var(--font-body);
+    background: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Accessibility Keyboard Focus Rings */
+  input:focus-visible,
+  button:focus-visible,
+  a:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  body {
+    background-image:
+      radial-gradient(
+        circle at 20% 0%,
+        color-mix(in oklab, var(--sky) 60%, transparent) 0,
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 100% 100%,
+        color-mix(in oklab, var(--grass) 35%, transparent) 0,
+        transparent 50%
+      );
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+  }
+
+  .pixelated,
+  .pixelated img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Pixel utilities */
+@layer utilities {
+  .pixel-border {
+    border: 3px solid var(--color-border);
+    box-shadow: var(--shadow-pixel);
+  }
+  .pixel-border-sm {
+    border: 2px solid var(--color-border);
+    box-shadow: var(--shadow-pixel-sm);
+  }
+  .pixel-card {
+    background: var(--color-card);
+    border: 3px solid var(--color-border);
+    box-shadow: var(--shadow-pixel);
+    border-radius: var(--radius-md);
+  }
+  .text-stroke {
+    -webkit-text-stroke: 1px var(--color-border);
+  }
+  .crt-scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.04) 0px,
+      rgba(0, 0, 0, 0.04) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+}
+
+/* Animations */
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+@keyframes float-cloud {
+  from {
+    transform: translateX(-10%);
+  }
+  to {
+    transform: translateX(110%);
+  }
+}
+@keyframes pop-in {
+  0% {
+    transform: scale(0.4) translateY(20px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1) translateY(-4px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(3px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+}
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+@keyframes flame-flicker {
+  0%,
+  100% {
+    transform: scaleY(1) translateY(0);
+  }
+  50% {
+    transform: scaleY(1.08) translateY(-1px);
+  }
+}
+
+.animate-bob {
+  animation: bob 2.4s ease-in-out infinite;
+}
+.animate-sway {
+  animation: sway 3s ease-in-out infinite;
+}
+.animate-pop-in {
+  animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+.animate-sparkle {
+  animation: sparkle 1.4s ease-in-out infinite;
+}
+.animate-flame {
+  animation: flame-flicker 0.6s ease-in-out infinite;
+}
+.animate-float-cloud {
+  animation: float-cloud 60s linear infinite;
+}
+
+/* Confetti & Celebration Animations */
+@keyframes falling-confetti {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(480px) rotate(360deg);
+    opacity: 0;
+  }
+}
+.animate-confetti {
+  animation: falling-confetti 4s linear infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+/* Tactile Retro Button Clicks */
+button:active:not(:disabled),
+a:active:not(:disabled),
+.active-press:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Retro Pixelated Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-muted);
+  border-left: 2px solid var(--color-border);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-card);
+  border: 2px solid var(--color-border);
+  box-shadow: inset -2px -2px 0 0 rgba(0, 0, 0, 0.15);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
