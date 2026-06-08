@@ -6,10 +6,24 @@ import { supabase } from "./client";
 // the browser never attaches the bearer token to serverFn RPCs.
 export const attachSupabaseAuth = createMiddleware({ type: "function" }).client(
   async ({ next }) => {
-    const { data } = await supabase.auth.getSession();
-    const token = data.session?.access_token;
-    return next({
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
-    });
+    try {
+      // Check if Supabase credentials are configured in the client environment
+      const hasSupabase =
+        Boolean(import.meta.env.VITE_SUPABASE_URL) &&
+        Boolean(import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY);
+
+      if (!hasSupabase) {
+        return next();
+      }
+
+      const { data } = await supabase.auth.getSession();
+      const token = data.session?.access_token;
+      return next({
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+    } catch (e) {
+      console.warn("[Supabase] Skipping auth header attachment:", e);
+      return next();
+    }
   },
 );
